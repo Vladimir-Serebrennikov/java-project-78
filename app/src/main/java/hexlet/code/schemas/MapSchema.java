@@ -1,4 +1,5 @@
-package hexlet.code;
+package hexlet.code.schemas;
+
 import java.util.Map;
 import java.util.Objects;
 public class MapSchema extends BaseSchema {
