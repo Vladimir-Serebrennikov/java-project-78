@@ -11,13 +11,13 @@ public class NumberSchema extends BaseSchema {
 
     public NumberSchema positive() {
         addCheck("positive",
-                value -> ((int) value) > 0);
+                value -> value == null || ((int) value) > 0);
         return this;
     }
 
     public NumberSchema range(int start, int end) {
         addCheck("range",
-                value -> (int) value >= start && (int) value <= end);
+                value -> value == null || (int) value >= start && (int) value <= end);
         return this;
     }
 
