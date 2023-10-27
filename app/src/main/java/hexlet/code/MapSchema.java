@@ -16,4 +16,14 @@ public class MapSchema extends BaseSchema{
                 });
         return this;
     }
+
+    public MapSchema shape(Map<String, BaseSchema> schemas) {
+        addCheck("sizeof",
+                value -> schemas.keySet()
+                        .stream().allMatch(key -> {
+                            Object mapValue = ((Map<?, ?>) value).get(key);
+                            return schemas.get(key).isValid(mapValue);
+                        }));
+        return this;
+    }
 }
