@@ -1,27 +1,36 @@
-.PHONY: build
+.DEFAULT_GOAL := build-run
 
-test:
-	@./gradlew test
-
-rebuild: clean build install-dist
-	@clear
-
-build: checkstyle
-	@./gradlew build
-
-checkstyle:
-	@./gradlew checkstyleMain
-	@./gradlew checkstyleTest
-
-install-dist:
-	@./gradlew installDist
-
-report:
-	@./gradlew jacocoTestReport
-
-run-dist:
-	@./build/install/app/bin/app
+setup:
+	gradle wrapper --gradle-version 8.3
 
 clean:
-	@./gradlew clean
+	./gradlew clean
 
+build:
+	./gradlew clean build
+
+install:
+	./gradlew clean install
+
+run-dist:
+	./build/install/app/bin/app
+
+run:
+	./gradlew run
+
+test:
+	./gradlew test
+
+report:
+	./gradlew jacocoTestReport
+
+lint:
+	./gradlew checkstyleMain
+
+check-deps:
+	./gradlew dependencyUpdates -Drevision=release
+
+
+build-run: build run
+
+.PHONY: build
