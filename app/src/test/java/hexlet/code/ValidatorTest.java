@@ -1,6 +1,10 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidatorTest {
@@ -78,5 +82,38 @@ public class ValidatorTest {
         Object valueOutOfRange = 3;
 
         assertFalse(schema.range(5, 10).isValid(valueOutOfRange));
+    }
+    @Test
+    public void testRequiredWithValidMap() {
+        MapSchema schema = new MapSchema();
+        Map<String, Integer> validMap = new HashMap<>();
+        validMap.put("key1", 1);
+        validMap.put("key2", 2);
+        assertTrue(schema.required().isValid(validMap));
+    }
+    @Test
+    public void testRequiredWithNullMap() {
+        MapSchema schema = new MapSchema();
+        assertFalse(schema.required().isValid(null));
+    }
+
+    @Test
+    public void testSizeOfWithValidSize() {
+        MapSchema schema = new MapSchema();
+        Map<String, Integer> validMap = new HashMap<>();
+        validMap.put("key1", 1);
+        validMap.put("key2", 2);
+
+        assertTrue(schema.sizeof(2).isValid(validMap));
+    }
+
+    @Test
+    public void testSizeOfWithInvalidSize() {
+        MapSchema schema = new MapSchema();
+        Map<String, Integer> validMap = new HashMap<>();
+        validMap.put("key1", 1);
+        validMap.put("key2", 2);
+
+        assertFalse(schema.sizeof(3).isValid(validMap));
     }
 }
