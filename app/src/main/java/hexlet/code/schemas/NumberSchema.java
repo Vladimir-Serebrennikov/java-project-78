@@ -12,14 +12,14 @@ public class NumberSchema extends BaseSchema {
 
     public NumberSchema positive() {
         addCheck("positive",
-                value -> value instanceof Number && (value == null || ((Integer) value) > 0));
+                value -> value == null || ((Integer) value) > 0);
         return this;
     }
 
     public NumberSchema range(int start, int end) {
         addCheck("range",
-                value -> value instanceof Number && (value == null || (Integer) value >= start
-                        && (Integer) value <= end));
+                value -> value == null || (Integer) value >= start
+                        && (Integer) value <= end);
         return this;
     }
 
