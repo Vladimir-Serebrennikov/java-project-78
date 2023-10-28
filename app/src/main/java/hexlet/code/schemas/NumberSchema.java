@@ -3,18 +3,10 @@ package hexlet.code.schemas;
 import java.util.Objects;
 
 public class NumberSchema extends BaseSchema {
-    private Object parameter;
 
     public NumberSchema() {
-        this.parameter = null;
-    }
-
-    public NumberSchema(Object value) {
-        if (value == null || value instanceof Number) {
-            this.parameter = value;
-        } else {
-            this.parameter = null;
-        }
+        addCheck("constructor",
+                value -> ((value == null) || (value instanceof Number)));
     }
 
     public NumberSchema required() {
