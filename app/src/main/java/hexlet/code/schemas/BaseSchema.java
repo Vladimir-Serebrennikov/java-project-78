@@ -10,6 +10,10 @@ public abstract class BaseSchema {
         this.checks = new HashMap<>();
     }
 
+/*
+ * Adds a new validation rule to the schema. This method is intended to be overridden
+ * in subclasses to add custom validation rules.
+ */
     public void addCheck(String nameSchema, Predicate<Object> check) {
         checks.put(nameSchema, check);
     }
