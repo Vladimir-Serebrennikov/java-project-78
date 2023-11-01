@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'checkstyle'
-    id 'application'
     id "com.adarshr.test-logger" version "4.0.0"
 }
 
@@ -20,9 +19,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-run {
-    standardInput = System.in
 }
 
 jacoco {
